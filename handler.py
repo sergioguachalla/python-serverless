@@ -6,7 +6,7 @@ table_name = 'users'
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table(table_name)
 
-def hello(event, context):
+def insert_users(event, context):
    
     result = None
 
@@ -19,7 +19,7 @@ def hello(event, context):
     with table.batch_writer() as batch_writer:
         for person in people:
             item = {
-                'id' : person['id'],
+                'id' :  uuid.uuid4().hex,
                 'name'  : person['name'],
                 'lastname': person['lastname']
             }

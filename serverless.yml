@@ -11,11 +11,17 @@ provider:
       Action:
         - dynamodb:Scan
         - dynamodb:BatchWriteItem
-      Resource: "*"
+      Resource: "arn:aws:dynamodb:us-west-2:015111756483:table/users"
 functions:
   find_all:
     handler: handler.find_all
     events:
       - httpApi:
-          path: v1/users/
+          path: /all
+          method: get
+  insert:
+    handler: handler.insert_users
+    events:
+      - httpApi:
+          path: /users
           method: get
