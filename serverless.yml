@@ -17,5 +17,5 @@ functions:
     handler: handler.find_all
     events:
       - httpApi:
-          path: /
+          path: v1/users/
           method: get
