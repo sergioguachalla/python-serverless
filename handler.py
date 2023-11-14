@@ -2,12 +2,12 @@ import json
 import boto3
 import uuid
 
-
+table_name = 'users'
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table(table_name)
 
 def hello(event, context):
-    table_name = 'users'
-    dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table(table_name)
+   
     result = None
 
     people = [
@@ -29,3 +29,8 @@ def hello(event, context):
         result = f"Success. Added {len(people)} people to {table_name}."
 
     return {'message': result}
+
+
+def find_all(event, context):
+  data = table.scan()
+  return data['Items']

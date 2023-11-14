@@ -13,8 +13,8 @@ provider:
         - dynamodb:BatchWriteItem
       Resource: "*"
 functions:
-  hello:
-    handler: handler.hello
+  find_all:
+    handler: handler.find_all
     events:
       - httpApi:
           path: /
